@@ -1,0 +1,21 @@
+C = int(input())
+l = []  #list로 변수명 지으면 map을 사용해서 타입 변환할 때 에러 뜸 변수명 바꿔주자
+
+for i in range(C):
+    str = input()
+    l.append(str)
+
+for i in l:
+    score = list(map(int,i.split()))
+
+    N = int(score.pop(0))
+    avg = sum(score)/N
+    count = 0
+
+    for j in score:
+        if(j>avg):
+            count+=1
+    # "{:}" .format()
+    print("{:.3f}%" .format(count/N*100))
+    # "%" % : 안에서 %사용하려면 2번 작성
+    # print("%.3f%%" %(count/N*100))
