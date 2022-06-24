@@ -1,0 +1,15 @@
+def d(n):
+    num = n
+    numList = list(str(n))
+
+    for i in range(0, len(numList)):
+        num += int(numList[i])
+
+    noSelfNumbers.append(num)
+
+noSelfNumbers = []
+
+for i in range(1, 10001):
+    d(i)
+    if i not in noSelfNumbers:
+        print(i)
