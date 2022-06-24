@@ -1,0 +1,11 @@
+A,B = map(int, input().split())
+C = int(input())
+
+if(B+C<60):
+    print(str(A)+" "+str(B+C))
+elif(B+C>=60):
+    m = B+C
+    if(A+ (m//60)>=24):
+        print(str(A+(m//60)-24)+" "+str(m%60))
+    else:
+        print(str(A+ (m//60))+" "+str(m%60))
