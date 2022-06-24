@@ -1,0 +1,19 @@
+t = int(input())
+list = []
+split_list=[]
+
+for i in range(t):
+    str = input()
+    list.append(str)
+
+for i in list:
+    count=0
+    sum=0
+    
+    for j in range(len(i)):
+        if(i[j]=='O'):
+            count+=1
+        elif(i[j]=='X'):
+            count=0
+        sum += count
+    print(sum)
