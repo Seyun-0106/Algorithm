@@ -1,12 +1,11 @@
-A,B,C = map(int, input().split())
-list = [A,B,C]
+list = list(map(int, input().split()))
 
 # 같은 눈 3개
-if(list.count(A)==3):
-    prize = 10000+A*1000
+if(list.count(list[0])==3):
+    prize = 10000+list[0]*1000
     print(prize)
 # 같은 눈 0개
-elif(list.count(A)==1 and list.count(B)==1):
+elif(list.count(list[0])==1 and list.count(list[1])):
     prize = max(list)*100
     print(prize)
 else:
