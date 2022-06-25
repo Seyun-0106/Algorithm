@@ -1,0 +1,7 @@
+str = input()
+alphabet = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+for i in alphabet:
+    if(str.find(i)!=-1):
+        str = str.replace(i,'_')
+
+print(len(str))
