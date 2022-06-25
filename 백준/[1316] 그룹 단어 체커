@@ -1,0 +1,14 @@
+N = int(input())
+groupcount = 0
+
+for i in range(N):
+    str = input()
+    isgoup = True
+    for j in range(len(str)-1):
+        if str[j] != str[j+1]:
+            editStr = str[j+1:]
+            if editStr.count(str[j])>0:
+                isgoup = False
+    if(isgoup):
+        groupcount+=1
+print(groupcount)
