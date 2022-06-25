@@ -1,0 +1,16 @@
+N = int(input())
+number = list(map(int,input().split()))
+count=0
+
+for i in number:
+    state = True    #소수이면 True
+    
+    if(i==1):#1은 소수가 아님
+        state = False
+    else:
+        for j in range(2,i):
+            if(i%j==0):
+                state = False
+    if(state==True):
+        count+=1
+print(count)
