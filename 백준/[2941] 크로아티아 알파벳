@@ -1,7 +1,8 @@
 str = input()
 alphabet = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+count=0
 for i in alphabet:
-    if(str.find(i)!=-1):
-        str = str.replace(i,'_')
+    if(str.count(i)>0):
+        count += str.count(i)
 
-print(len(str))
+print(len(str)-count)
