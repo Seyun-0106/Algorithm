@@ -3,12 +3,13 @@ groupcount = 0
 
 for i in range(N):
     str = input()
-    isgoup = True
+    isgroup = True
     for j in range(len(str)-1):
         if str[j] != str[j+1]:
             editStr = str[j+1:]
             if editStr.count(str[j])>0:
-                isgoup = False
-    if(isgoup):
+                isgroup = False
+                break
+    if(isgroup):
         groupcount+=1
 print(groupcount)
