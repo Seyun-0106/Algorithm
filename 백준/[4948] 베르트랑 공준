@@ -1,0 +1,16 @@
+sosu = set()
+for i in range(2,123456*2+1):
+  if i==1: continue
+  state = True
+  for j in range(2,int(i**0.5)+1):
+    if i%j==0:
+      state = False
+      break
+  if state==True:  
+    sosu.add(i)
+    
+while True:
+  N = int(input())
+  if N==0:  break
+  num = set(i for i in range(N+1, 2*N+1))
+  print(len(num&sosu))
