@@ -1,0 +1,20 @@
+T = int(input())
+
+sosu = set()
+for i in range(2, 10001):
+  state = True
+  for j in range(2, int(i**0.5)+1):
+    if i%j==0:
+      state = False
+      break
+  if state==True:
+    sosu.add(i)
+
+for _ in range(T):
+  n = int(input())
+  d = dict()
+  for i in sosu:
+    if n-i in sosu:
+      if n-i-i>=0:
+        d[n-i-i] = str(i)+' '+str(n-i)
+  print(d[min(d.keys())])
