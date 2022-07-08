@@ -1,0 +1,9 @@
+N,M = map(int, input().split())
+card = []
+result = 0
+for i in range(N):
+  card.append(list(map(int, input().split())))
+  if result < min(card[i]):
+    result = min(card[i])
+
+print(result)
