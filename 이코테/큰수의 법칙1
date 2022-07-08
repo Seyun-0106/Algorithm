@@ -1,0 +1,17 @@
+N,M,K = map(int, input().split())
+num = list(map(int, input().split()))
+num.sort(reverse=True)
+max1 = num[0]
+max2 = num[1]
+result = 0
+count = 0
+
+for i in range(M):
+  if count==K:
+    result += max2
+    count = 0
+  else:
+    result += max1
+    count+=1
+
+print(result)
