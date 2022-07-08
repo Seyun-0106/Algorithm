@@ -1,0 +1,18 @@
+N = int(input())
+go = input().split()
+pos = [1,1]
+
+for i in go:
+  if i=='L':
+    if pos[1]==1:continue
+    pos[1]-=1
+  elif i=='R':
+    if pos[1]==N:continue
+    pos[1]+=1
+  elif i=='U':
+    if pos[0]==1:continue
+    pos[0]-=1
+  elif i=='D':
+    if pos[0]==N:continue
+    pos[0]+=1
+print(pos[0], pos[1])
