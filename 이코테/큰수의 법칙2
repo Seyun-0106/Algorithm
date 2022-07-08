@@ -1,0 +1,10 @@
+N,M,K = map(int, input().split())
+num = list(map(int, input().split()))
+num.sort(reverse=True)
+max1 = num[0]
+max2 = num[1]
+
+result = (max1*K+max2)*M//(K+1)
+result += max1*M%(K+1)
+
+print(result)
