@@ -1,0 +1,24 @@
+from itertools import combinations
+
+n,m = map(int, input().split())
+data = map(int, input().split())
+
+result = list(combinations(data,3))
+min = 999999999
+index = -1
+sIndex = 0
+
+for i in result:
+  index += 1
+  if sum(i)==m:
+    sIndex = index
+    break
+    
+  if sum(i)>m:
+    continue
+  
+  if min>=abs(m-sum(i)):
+    min = abs(m-sum(i))
+    sIndex = index
+    
+print(sum(result[sIndex]))
