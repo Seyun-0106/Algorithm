@@ -1,0 +1,22 @@
+n = int(input())
+m = int(input())
+
+graph = [[]*n for i in range(n+1)]
+
+for i in range(m):
+    x,y = map(int, input().split())
+    
+    graph[x].append(y)
+    graph[y].append(x)
+    
+visited = [False]*(n+1)
+
+def dfs(n):
+    visited[n]=True
+    
+    for i in graph[n]:
+        if visited[i]==False:
+            dfs(i)
+
+dfs(1)
+print(visited.count(True)-1)	# 1 제외!
