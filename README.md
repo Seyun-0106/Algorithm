@@ -4,4 +4,4 @@
 
 
 ### :four_leaf_clover: [백준](https://github.com/Seyun-0106/Algorithm/tree/main/%EB%B0%B1%EC%A4%80)
-### :four_leaf_clover: [프로그래머스](http://www.naver.com)
+### :four_leaf_clover: [이코테](https://github.com/Seyun-0106/Algorithm/tree/main/%EC%9D%B4%EC%BD%94%ED%85%8C)
