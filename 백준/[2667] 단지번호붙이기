@@ -1,0 +1,44 @@
+n = int(input())
+
+graph = []
+for i in range(n):
+    graph.append(list(map(int, input())))
+    
+apartCnt = 0
+apartInfo = []
+
+def dfs(x, y):
+    global apartCnt
+    
+    if x<0 or x>=n or y<0 or y>=n:
+        return False
+    
+    if graph[x][y]==1:
+        graph[x][y] = 0  #방문처리
+        apartCnt+=1
+        
+        dfs(x-1, y)
+        dfs(x+1, y)
+        dfs(x, y-1)
+        dfs(x, y+1)
+        
+        return True
+    
+    return False
+    
+cnt=0
+for i in range(n):
+    for j in range(n):
+        if dfs(i,j)==True:
+           cnt+=1 
+           apartInfo.append(apartCnt)
+           apartCnt = 0 #단지 수초기화
+
+
+# 총 단지 수
+print(cnt)
+
+# 각 단지 내 집의 수(오름차순)
+apartInfo.sort()
+for i in apartInfo:
+    print(i)
