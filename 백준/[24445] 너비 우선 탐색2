@@ -1,0 +1,36 @@
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+n, m, r = map(int, input().split())
+
+def bfs(v):
+    global visited
+    cnt = 2
+    queue = deque([v])
+    
+    while queue:
+        v = queue.popleft()
+        graph[v].sort(reverse=True) #내림차순 정렬
+        
+        for i in graph[v]:
+            if visited[i]==0:
+                queue.append(i)
+                visited[i] = cnt    #방문처리
+                cnt+=1
+                
+
+
+graph = [[]*n for i in range(n+1)]
+visited = [0]*(n+1)
+visited[r] = 1
+
+for i in range(m):
+    u, v = map(int, input().split())
+    graph[u].append(v)
+    graph[v].append(u)
+
+bfs(r)
+
+for i in visited[1:]:
+    print(i)
