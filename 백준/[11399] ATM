@@ -1,0 +1,13 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+array = list(map(int, input().split()))
+array.sort()
+
+total = 0
+for i in range(n):
+    for j in range(0, i+1):
+        total += array[j]
+
+print(total)
