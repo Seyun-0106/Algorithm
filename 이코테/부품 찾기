@@ -1,0 +1,24 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+component = list(map(int, input().split()))
+component.sort()
+
+m = int(input())
+order = list(map(int, input().split()))
+
+def binary_search(array, start, end, target):
+    
+    while start <= end:
+        mid = (start + end) // 2
+        if array[mid] == target:
+            return 'yes'
+        elif array[mid] > target:
+            end = mid-1
+        else:
+            start = mid+1
+    return 'no'
+    
+for i in order:
+    print(binary_search(component, 0, n-1, i), end=' ')
