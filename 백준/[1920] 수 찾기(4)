@@ -1,0 +1,16 @@
+import sys
+input = sys.stdin.readline
+from bisect import bisect_left, bisect_right
+    
+n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+
+m = int(input())
+b = list(map(int, input().split()))
+
+for i in b:
+    if bisect_right(a, i)-bisect_left(a, i)>0:
+        print('1')
+    else:
+        print('0')
