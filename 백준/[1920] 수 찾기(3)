@@ -1,0 +1,16 @@
+import sys
+input = sys.stdin.readline
+from collections import Counter
+    
+n = int(input())
+a = list(map(int, input().split()))
+
+m = int(input())
+b = list(map(int, input().split()))
+
+counter = Counter(a)
+for i in b:
+    if counter[i]>0:
+        print('1')
+    else:
+        print('0')
