@@ -1,0 +1,15 @@
+import sys
+input = sys.stdin.readline
+from collections import Counter
+
+n = int(input())
+card = list(map(int, input().split()))
+card.sort()
+
+m = int(input())
+count_card = list(map(int, input().split()))
+
+counter = Counter(card)
+
+for i in count_card:
+    print(counter[i], end=' ')
