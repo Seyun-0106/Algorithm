@@ -1,0 +1,31 @@
+import heapq
+import sys
+input = sys.stdin.readline
+
+INF = int(1e9)
+n,k = map(int, input().split())
+distance = [INF]*(100001)
+
+def dijkstra(start):
+    q = []
+    heapq.heappush(q, (0, start))
+    distance[start] = 0
+    
+    while q:
+        dist, now = heapq.heappop(q)
+        
+        if now ==k:	# 동생 위치와 같은 경우
+            return
+        
+        if distance[now]<dist:
+            continue
+        
+        for i in [(1, now-1), (1, now+1), (0, now*2)]:
+            cost = dist+i[0]
+            if 0<=i[1]<=100000:
+                if distance[i[1]] > cost:
+                    distance[i[1]] = cost
+                    heapq.heappush(q, (cost, i[1]))
+
+dijkstra(n)
+print(distance[k])
