@@ -1,0 +1,25 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+n,k = map(int,input().split())
+INF = int(1e9)
+
+def bfs(start, target):
+    q = deque([])
+    q.append((0,start))
+    
+    distance = [INF] * (100001)
+    distance[start] = 0
+    
+    while q:
+        dist, now = q.popleft()
+        if now==target:
+            return distance[target]
+            
+        for x in [(1, now+1), (1, now-1), (0, now*2)]:
+            if 0<=x[1]<100001:
+                if distance[x[1]] > dist+x[0]:
+                    distance[x[1]] = dist+x[0]
+                    q.append((distance[x[1]],x[1]))
+
+print(bfs(n,k))
