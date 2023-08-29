@@ -1,0 +1,12 @@
+def solution(priorities, location):
+    info = [(i, priorities[i]) for i in range(len(priorities))]
+    index = 0
+    
+    while info:
+        now = info.pop(0)
+        if any(now[1] < i[1] for i in info):
+            info.append(now)
+        else:
+            index+=1
+            if now[0]==location:
+                return index
