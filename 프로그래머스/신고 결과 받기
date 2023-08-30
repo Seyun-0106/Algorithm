@@ -1,0 +1,31 @@
+def solution(id_list, report, k):
+    dict = {}
+    for i, v in enumerate(id_list):
+        dict[v] = i
+    
+    # 각 유저마다 신고한 사람 넣기
+    report_list = [[] for _ in range(len(id_list))]
+    # 각 유저별 신고 횟수
+    report_count = [0]*len(id_list)
+    # 메일 횟수
+    mail_list = [0]*len(id_list)
+    
+    for i in report:
+        to = i.split()[0]
+        fr = i.split()[1]
+        
+        to_id = dict[to]
+        fr_id = dict[fr]
+        
+        #to가 fr를 신고한 전적이 없는 경우
+        if to not in report_list[fr_id]:
+            # 신고 처리
+            report_count[fr_id] += 1
+            report_list[fr_id].append(to)
+                # k번 이상 신고된 경우
+    for i, v in enumerate(report_count):
+        if v>=k:
+            for user in report_list[i]:
+                mail_list[dict[user]] += 1
+
+    return mail_list
