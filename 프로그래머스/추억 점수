@@ -1,0 +1,14 @@
+def solution(name, yearning, photo):
+    result = []
+    dict = {}
+    for i in range(len(name)):
+        dict[name[i]] = yearning[i]
+
+    for i in photo:
+        sum = 0
+        for j in i:
+            if j in dict:
+                sum += dict[j]
+        result.append(sum)  
+
+    return result
