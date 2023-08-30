@@ -1,0 +1,17 @@
+def solution(players, callings):
+    # 선수 이름 : 현재 index
+    dic = {}
+    for i in range(len(players)):
+        dic[players[i]] = i
+        
+    for i in callings:
+        idx = dic[i]    # 이름 불린 선수의 index
+        dic[i] -= 1     # 이름 불린 선수 index 수정
+        
+        player = players[idx-1] # 따라잡힌 선수 이름(dicionary의 key값 알기 위해)
+        dic[player] += 1    # 따라잡힌 선수 index 수정
+        
+        # 두 선수 순서 교환
+        players[idx], players[idx-1] = players[idx-1], players[idx]
+
+    return players
