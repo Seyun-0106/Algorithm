@@ -1,0 +1,54 @@
+def dfs(x, y, routes, graph):
+    # 시작 지점 S -> O로 수정
+    graph[x][y] = 'O'    
+    
+    for i in routes:
+        direction, step = i.split()
+        step = int(step)
+        
+        nx = x
+        ny = y
+        
+        # 방향에 맞게 step만큼 1칸씩 이동
+        for s in range(step):
+            if direction == 'N':
+                nx -= 1
+            elif direction == 'S':
+                nx += 1
+            elif direction == 'W':
+                ny -= 1
+            else :
+                ny += 1
+                
+            # 이동하면서 범위 확인
+            if 0<=nx<h and 0<=ny<w and graph[nx][ny]=='O':
+                go = True
+            else:
+                go = False
+                break
+                
+        # 범위 벗어나지 않았으면 현재 위치 변경
+        if go:
+            x = nx
+            y = ny
+            go = False
+            
+    return x, y
+
+def solution(park, routes):
+    global h, w
+    h = len(park)
+    w = len(park[0])
+    
+    graph = []
+    for i in range(h):
+        graph.append(list(park[i]))
+    
+    for i in range(h):
+        for j in range(w):
+            if graph[i][j] == 'S':	# 시작 지점에서 dfs 호출
+                x, y = dfs(i,j, routes, graph)
+    return [x, y]
+
+h = 0
+w = 0
