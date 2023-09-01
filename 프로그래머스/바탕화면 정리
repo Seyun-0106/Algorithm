@@ -1,0 +1,18 @@
+def solution(wallpaper):
+    graph = []
+    for i in wallpaper:
+        graph.append(list(i))
+
+	# 파일의 x, y 좌표를 담을 리스트
+    x_list = []
+    y_list = []
+    
+    for i in range(len(graph)):
+        for j in range(len(graph[i])):
+            if graph[i][j] == '#':	# 파일이 존재하는 경우
+                x_list.append(i)
+                y_list.append(j)
+                
+    # 드래그 시작 지점 : 모든 파일들 중 x 최솟값, y 최솟값
+    # 드래그 끝 지점 : 모든 파일 중 x 최댓값+1, y 최댓값+1
+    return[min(x_list), min(y_list), max(x_list)+1, max(y_list)+1]
