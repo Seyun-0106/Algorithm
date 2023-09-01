@@ -1,0 +1,21 @@
+# 날짜를 일로 반환하는 함수
+def time_convert(t):
+    y, m, d = map(int, t.split('.'))
+    return y*12*28 + m*28 + d
+
+def solution(today, terms, privacies):
+    dict = {}
+    for i in terms:
+        code, term = i.split()
+        dict[code] = term
+
+    answer = []
+    for idx, i in enumerate(privacies):
+        date, code = i.split()
+        term = int(dict[code])
+        d1 = time_convert(date) + term*28
+
+        if time_convert(today)>=d1:
+            answer.append(idx+1)
+            
+    return answer
