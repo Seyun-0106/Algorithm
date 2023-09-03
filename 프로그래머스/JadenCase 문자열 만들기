@@ -1,0 +1,16 @@
+def solution(s):
+    answer = ''
+    s_list = list(s)
+
+    for idx, i in enumerate(s_list):
+        if idx==0 or s_list[idx-1]==' ':
+            if i.isalpha():
+                answer+=i.upper()
+            else:
+                answer+=i
+        else:
+            if i.isalpha():
+                answer+=i.lower()
+            else:
+                answer+=i
+    return answer
