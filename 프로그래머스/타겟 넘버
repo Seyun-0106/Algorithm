@@ -1,0 +1,16 @@
+def solution(numbers, target):
+    answer = 0
+    graph = [0]
+    
+    for i in numbers:
+        temp = []
+        for j in graph:
+            temp.append(j+i)
+            temp.append(j-i)
+        graph = temp
+    
+    for i in graph:
+        if i==target:
+            answer+=1
+            
+    return answer
