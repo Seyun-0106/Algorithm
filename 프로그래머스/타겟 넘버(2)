@@ -1,0 +1,16 @@
+def dfs(numbers, target, idx, value) :
+    global cnt
+    
+    if idx == len(numbers) :	# 더이상 계산할 필요 X, target 값 비교
+        if value == target : 
+            cnt+=1
+        return
+    else :
+        dfs(numbers, target, idx+1, value+numbers[idx])
+        dfs(numbers, target, idx+1, value-numbers[idx])
+
+def solution(numbers, target):
+    global cnt
+    cnt = 0
+    dfs(numbers, target, 0, 0)
+    return cnt
