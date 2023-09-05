@@ -1,0 +1,16 @@
+def solution(n):
+    answer = 0
+
+    n_bin = bin(n)[2:]  # n의 2진수
+    zeroCnt = list(n_bin).count('1')    # 1의 갯수
+    
+    next_bin = ''
+    next = n+1
+    
+    while True:
+        next_bin = bin(next)[2:]    # 78보다 큰 숫자의 2진수
+        if list(next_bin).count('1')==zeroCnt:  # 1의 갯수가 같으면 종료
+            break
+        next += 1
+
+    return next
