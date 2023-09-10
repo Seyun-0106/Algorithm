@@ -1,0 +1,26 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+info = []
+result = []
+
+for i in range(n):
+    x, y = map(int, input().split())
+    info.append((x,y))
+
+for i in range(n):
+    cnt = 0
+    for j in range(n):
+        if i==j:
+            continue
+        if info[i][0]<info[j][0] and info[i][1]<info[j][1]: #몸무게, 키 둘 다 큰 경우
+            cnt+=1
+    if cnt==0:
+        result.append(1)
+    else:
+        result.append(cnt+1)
+    
+for i in result:
+    print(i, end=' ')
