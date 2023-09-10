@@ -1,0 +1,24 @@
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    x1, y1, x2, y2 = map(int, input().split())
+    
+    n = int(input())
+    count = 0
+    for i in range(n):
+        c1, c2, r = map(int, input().split())
+        # 어린왕자의 위치에서 행성의 중심까지의 거리 구하기
+        dist1 = ((x1-c1)**2 + (y1-c2)**2)  # 출발지점
+        dist2 = ((x2-c1)**2 + (y2-c2)**2)  # 도착지점
+        # 거리가 r보다 작다면 행성 내부에 있으므로 진입/이탈 필요
+        
+        #츌발지점, 도착지점 모두 행성 내부에 있는 경우는 count X
+        if (dist1<r**2 and dist2<r**2):
+            pass
+        elif dist1<r**2:
+            count += 1
+        elif dist2<r**2:
+            count += 1
+    print(count)
