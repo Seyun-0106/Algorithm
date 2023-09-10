@@ -1,0 +1,22 @@
+def solution(elements):
+    result = set()
+    elements = elements * 2
+    
+    length = 1	# 부분수열 길이
+    start = 0
+    end = 1
+    
+    while True:
+        if length>len(elements)//2:
+            break
+            
+        result.add(sum(elements[start:end]))
+        start += 1	# 다음 인덱스로 이동
+        end += 1	# 다음 인덱스로 이동
+        
+        if start > len(elements)//2:	# 원본 elements의 마지막 요소를 지난 경우
+            start = 0					# 처음으로 돌아감
+            length += 1					# 부분 수열의 길이 +1
+            end = length				# end는 부분 수열의 길이와 동일
+
+    return len(result)
