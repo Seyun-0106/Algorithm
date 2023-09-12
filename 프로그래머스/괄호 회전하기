@@ -1,0 +1,26 @@
+def result(s):
+    g = ['()', '{}', '[]']
+    
+    while True:
+        found = False
+        
+        for i in range(len(s)-1):
+            if s[i:i+2] in g:
+                s = s.replace(s[i:i+2], '')	# 인접한 두 문자열이 올바른 괄호인 경우 공백 처리
+                found = True
+                break
+                
+        if not found:
+            break
+            
+    return len(s)
+
+def solution(s):
+    answer = 0
+    
+    for i in range(len(s)):
+        rotation = s[i:] + s[:i]
+        if result(rotation)==0:
+            answer += 1
+        
+    return answer
