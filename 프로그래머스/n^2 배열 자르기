@@ -1,0 +1,10 @@
+def solution(n, left, right):
+    answer = []
+    arr = [[0]*n for _ in range(n)]
+    num = [i for i in range(1, n+1)]
+
+    for i in range(1, n+1):
+        answer.extend([i]*i)
+        answer.extend(num[i:])
+
+    return answer[left:right+1]
