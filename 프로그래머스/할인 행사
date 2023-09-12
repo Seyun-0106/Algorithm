@@ -1,0 +1,19 @@
+def solution(want, number, discount):
+    answer = 0
+    dic = {}
+    for i in range(len(want)):
+        dic[want[i]] = number[i]
+    
+    for i in range(len(discount)):
+        d = discount[i:10+i]
+        check = True
+        
+        for i in want:
+            if dic[i] != d.count(i):
+                check = False
+                break
+            
+        if check:
+            answer += 1
+
+    return answer
