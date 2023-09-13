@@ -1,0 +1,13 @@
+def solution(arr1, arr2):
+    # 전치 (행<->열 바꾸기)
+    arr2 = list(zip(*arr2))
+    
+    # arr1의 행 수 * 기존 arr2의 열 수(= 전치한 arr2의 행 수)
+    answer = [[0] * len(arr2) for _ in range(len(arr1))]
+
+    for i in range(len(arr1)):
+        for j in range(len(arr2)):
+            result = [x*y for x,y in zip(arr1[i],arr2[j])]
+            answer[i][j] = sum(result)
+
+    return answer
