@@ -1,0 +1,15 @@
+def solution(citations):
+    answer = 0
+    
+    for i in range(max(citations)+1):
+        cnt1 = 0    # i회 이하 인용된 논문의 수
+        cnt2 = 0    # i회 이상 인용된 논문의 수
+        
+        for j in citations:
+            if i<=j:
+                cnt1 += 1
+            if i>=j:
+                cnt2 += 1
+        if cnt1>=i and cnt2<=i:
+            answer = max(answer, i)
+    return answer
