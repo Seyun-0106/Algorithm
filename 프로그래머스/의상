@@ -1,0 +1,13 @@
+def solution(clothes):
+    cloth = {}
+    ans = 1
+    
+    for i in clothes:
+        if i[1] in cloth: # 해당 옷 종류가 있을 경우
+            cloth[i[1]] += 1
+        else: # 해당 옷 종류가 없을 경우
+            cloth[i[1]] = 1
+
+    for i in cloth.values(): 
+        ans *= (i + 1)  # 안 입는 경우 포함하기 위해 +1 처리
+    return ans - 1  # 아예 안 입는 경우 빼주기
