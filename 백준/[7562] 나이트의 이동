@@ -1,0 +1,41 @@
+import sys
+input = sys.stdin.readline
+from collections import deque
+
+def bfs(x, y):
+    q = deque()
+    q.append([x, y])
+    
+    visited[x][y] = True
+    
+    dx = [-2, -2, -1, -1, 2, 2, 1, 1]
+    dy = [-1, 1, -2, 2, -1, 1, -2, 2]
+
+    while q:
+        x, y = q.popleft()
+        
+        if x==x2 and y==y2:
+            return graph[x][y]
+        
+        for i in range(8):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+            if 0<=nx<l and 0<=ny<l:
+                if not visited[nx][ny]:
+                    graph[nx][ny] = graph[x][y] + 1	# 이동한 칸 업데이트
+                    q.append((nx, ny))
+                    visited[nx][ny] = True
+    
+t = int(input())
+
+for _ in range(t):
+    
+    l = int(input())
+    graph = [[0]*l for _ in range(l)]
+    visited = [[False]*l for _ in range(l)]
+    
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    
+    print(bfs(x1, y1))
