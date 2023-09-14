@@ -1,0 +1,48 @@
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10000)
+
+def dfs(x, y):
+    global areaCnt
+    areaCnt += 1
+    
+    visited[x][y] = True
+
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        
+        if 0<=nx<m and 0<=ny<n:
+            if not visited[nx][ny] and graph[nx][ny]!=0:
+                dfs(nx, ny)
+    
+m, n, k = map(int, input().split())
+graph = [[1]*n for _ in range(m)]
+visited = [[False]*n for _ in range(m)]
+
+for _ in range(k):
+    lx, ly, rx, ry = map(int, input().split())
+
+    for i in range(ly, ry):
+        for j in range(lx, rx):
+            graph[i][j] = 0
+                              
+cnt = 0
+area = []
+areaCnt = 0
+
+for i in range(m):
+    for j in range(n):
+        if not visited[i][j] and graph[i][j]!=0:
+            dfs(i, j)
+            area.append(areaCnt)
+            areaCnt = 0
+            cnt += 1
+            
+print(cnt)
+area.sort()
+for i in area:
+    print(i, end=' ')
