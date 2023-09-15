@@ -1,0 +1,15 @@
+import sys
+input = sys.stdin.readline
+from bisect import bisect_left
+
+n = int(input())
+nums = list(map(int, input().split()))
+lis = [0]
+
+for num in nums:
+    if lis[-1]<num:
+        lis.append(num) # 현재 LIS보다 더 긴 LIS를 만들기 위해 추가
+    else:
+        # LIS 리스트 내에서 현재 숫자가 들어갈 위치 찾기
+        lis[bisect_left(lis, num)] = num
+print(len(lis)-1)   # 초깃값 0 빼주기
