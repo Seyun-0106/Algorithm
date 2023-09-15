@@ -1,0 +1,41 @@
+import sys
+input = sys.stdin.readline
+import heapq
+
+def dijkstra(x, y):
+    q = []
+    heapq.heappush(q, [0, x, y])
+    distance[x][y] = 0
+    
+    dx = [-1, 1, 0, 0]
+    dy = [-0, 0, -1, 1]
+    
+    while q:
+        cost, x, y = heapq.heappop(q)
+        
+        if distance[x][y] < cost:
+            continue
+
+        if x==n and y==m:
+            return
+        
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+            if 0<=nx<n and 0<=ny<m:
+                if distance[nx][ny] > cost + graph[nx][ny]: # 벽을 만난 경우 비용 추가
+                    distance[nx][ny] = cost + graph[nx][ny]
+                    heapq.heappush(q, (cost+graph[nx][ny], nx, ny))
+                    
+m, n = map(int, input().split())
+graph = []
+
+INF = int(1e9)
+distance = [[INF]*m for _ in range(n)]
+
+for _ in range(n):
+    graph.append(list(map(int, input().rstrip())))
+
+dijkstra(0,0)
+print(distance[n-1][m-1])
