@@ -1,0 +1,45 @@
+import sys
+input = sys.stdin.readline
+import math
+
+def find_parent(parent, x):
+    if parent[x] != x:
+        parent[x] = find_parent(parent, parent[x])
+    return parent[x]
+    
+def union_parent(parent, a, b):
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
+    
+    if a<b:
+        parent[b] = a
+    else:
+        parent[a] = b
+        
+n, m = map(int, input().split())
+god = []
+parent = [i for i in range(n+1)]
+for _ in range(n):
+    x, y = map(int, input().split())
+    god.append((x,y))
+
+for _ in range(m):
+    a, b = map(int, input().split())
+    # 이미 연결되어 있는 노드들은 union 해주기
+    union_parent(parent, a, b)
+
+edges = []
+for i in range(1, n):	# 우주신들을 연결할 수 있는 모든 방법 append
+    for j in range(i+1, n+1):
+        dist = math.sqrt((god[i-1][0] - god[j-1][0])**2 + (god[i-1][1] - god[j-1][1])**2)
+        edges.append((dist, i, j))
+
+edges.sort()	# 거리 짧은 순으로 정렬
+result = 0
+for i in edges:
+    d, a, b = i
+    if find_parent(parent, a) != find_parent(parent, b):
+        union_parent(parent, a, b)
+        result += d
+        
+print('{:.2f}'.format(result))
