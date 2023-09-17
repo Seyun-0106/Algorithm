@@ -1,0 +1,21 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, lst):
+    if n==N:
+        if len(lst)==M:
+            if lst not in ans:	# 중복되지 않는 경우
+                print(' '.join(map(str, lst)))
+                ans.append(lst)
+        return
+    
+    # 포함시키는 경우
+    dfs(n+1, lst+[nums[n]])
+    # 포함시키지 않는 경우
+    dfs(n+1, lst)
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
+nums.sort()
+
+ans = []
+dfs(0, [])
