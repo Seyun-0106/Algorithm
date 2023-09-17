@@ -1,0 +1,31 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, lst):
+    if len(lst)==M:	# M개의 순열이 모인 경우
+        if lst not in ans:	# 중복되는 순열이 없는 경우 append
+           ans.append(lst[:])
+        return
+    
+    for i in nums:
+        if len(lst)==0:
+            lst.append(i)
+            dfs(n+1, lst)
+            lst.pop()
+        else:
+            if lst[-1]<=i: #비내림차순
+                lst.append(i)
+                dfs(n+1, lst)
+                lst.pop()
+                
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
+nums.sort()
+
+ans = []
+dfs(0, [])
+
+for i in ans:
+    for j in i:
+        print(j, end=' ')
+    print()
