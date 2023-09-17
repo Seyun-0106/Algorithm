@@ -1,0 +1,31 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, start, link):
+    global ans
+    
+    if n>N:
+        if len(start)==N//2 and len(link)==N//2:
+            s_value, l_value = 0, 0
+            for i in range(len(start)-1):
+                for j in range(i+1, len(start)):
+                    s_value += S[start[i]-1][start[j]-1] + S[start[j]-1][start[i]-1]
+                    l_value += S[link[i]-1][link[j]-1] + S[link[j]-1][link[i]-1]
+            
+            # 스타트팀 - 링크팀 능력치 차이 최솟값
+            ans = min(ans, abs(s_value-l_value))
+        return
+    
+    # 스타트팀에 포함시키는 경우
+    dfs(n+1, start+[n], link)
+    # 스타트팀에 포함시키지 않는 경우
+    dfs(n+1, start, link+[n])
+    
+N = int(input())
+S = []
+for _ in range(N):
+    S.append(list(map(int, input().split())))
+
+ans = int(1e9)
+dfs(1, [], [])
+print(ans)
