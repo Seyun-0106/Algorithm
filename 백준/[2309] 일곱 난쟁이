@@ -1,0 +1,24 @@
+import sys
+input = sys.stdin.readline
+
+#백트래킹 알고리즘
+def dfs(n, lst):
+    if n==9:
+        if len(lst)==7 and sum(lst)==100:
+            for i in lst:
+                print(i)
+            sys.exit()
+        return
+    
+    # 난쟁이 포함
+    dfs(n+1, lst+[heights[n]])
+    # 난쟁이 포함 X
+    dfs(n+1, lst)
+    
+heights = []
+for _ in range(9):
+    heights.append(int(input()))
+    
+heights.sort()  # 오름차순 정렬
+
+dfs(0, [])
