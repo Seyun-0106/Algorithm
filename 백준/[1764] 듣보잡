@@ -1,0 +1,26 @@
+import sys
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+
+# 듣도 못한 사람
+noL = {}
+for _ in range(N):
+    name = str(input().rstrip())
+    noL[name] = 1
+
+# 보도 못한 사람
+noS = {}
+for _ in range(M):
+    name = str(input().rstrip())
+    noS[name] = 1
+
+answer = []
+for i in list(noL.keys()):
+    if i in noS:
+        answer.append(i)
+
+answer.sort()
+print(len(answer))
+for i in answer:
+    print(i)
