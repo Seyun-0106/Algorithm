@@ -1,0 +1,11 @@
+import sys
+input = sys.stdin.readline
+
+nums = []
+for s in list(map(str, input().rstrip())):
+    nums.append(s)
+    
+nums.sort(reverse=True) #내림차순 정렬
+
+for i in nums:
+    print(i, end='')
