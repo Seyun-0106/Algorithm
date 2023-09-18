@@ -1,0 +1,13 @@
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+ages = []
+for idx in range(N):
+    age, name = map(str, input().split())
+    ages.append((int(age), idx, name))
+
+ages = sorted(ages, key=lambda x:(x[0], x[1]))
+
+for i in ages:
+    print(i[0], i[2])
