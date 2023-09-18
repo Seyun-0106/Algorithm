@@ -1,0 +1,18 @@
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+times = []
+for _ in range(N):
+    start, end = map(int, input().split())
+    times.append((start, end))
+
+times = sorted(times, key=lambda x: (x[1], x[0]))
+
+end_time = -1
+count = 0
+for i in times:
+    if i[0]>=end_time:  # 이후에 회의를 진행할 수 있는 경우
+        end_time = i[1]
+        count+=1
+print(count)
