@@ -1,0 +1,40 @@
+import sys
+input = sys.stdin.readline
+
+n=int(input())
+nums=[]
+dic = dict()
+
+for i in range(n):
+    num = int(input())
+    nums.append(num)
+    
+    if num not in dic:
+        dic[num] = 1
+    else:
+        dic[num] += 1
+
+nums.sort()
+
+# 산술평균
+print(round(sum(nums)/n))
+
+# 중앙값
+print(nums[n//2])
+
+#최빈값
+dic_list = list(dic.values())
+m = max(dic_list)
+key_list = []
+for i in dic:
+    if dic[i]==m:
+        key_list.append(i)
+        
+key_list.sort()
+if len(key_list)>1:
+    print(key_list[1])  # 두 번째로 작은 값
+else:
+    print(key_list[0])
+
+# 범위
+print(max(nums)-min(nums))
