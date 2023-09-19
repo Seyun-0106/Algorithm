@@ -1,0 +1,13 @@
+import sys
+input = sys.stdin.readline
+from bisect import bisect_left, bisect_right
+
+N = int(input())
+X = list(map(int, input().split()))
+
+x_sort = set(X) # 중복 제거
+x_sort = sorted(list(x_sort), key=lambda x:x)   # 오름차순 정렬
+
+for i in X:
+    index = bisect_left(x_sort, i)
+    print(index, end=' ')
