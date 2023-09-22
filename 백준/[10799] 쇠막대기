@@ -1,0 +1,20 @@
+import sys
+input = sys.stdin.readline
+
+s = input().rstrip()
+s = s.replace('()', '*')
+s = list(s)
+
+stick = 0
+total = 0
+while s:
+    p = s.pop()
+    if p==')':  # 막대 시작
+        stick += 1
+    elif p=='*':    # 현재 있는 막대 갯수만큼 잘려나옴
+        total += stick
+    else:   # 막대 끝, 막대 갯수 -1, 마지막으로 잘려나온 갯수 +1
+        stick -= 1
+        total += 1
+
+print(total)
