@@ -1,0 +1,22 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, lst):
+    global count
+    if n==N:
+        if len(lst)>0 and sum(lst)==S:
+            count+=1
+        return
+    
+    # 원소 포함
+    dfs(n+1, lst+[nums[n]])
+    # 원소 미포함
+    dfs(n+1, lst)
+    
+N, S = map(int, input().split())
+nums = list(map(int, input().split()))
+count = 0
+
+dfs(0, [])
+
+print(count)
