@@ -1,0 +1,22 @@
+import sys
+input = sys.stdin.readline
+
+nums = input().rstrip()
+minus  = list(map(str, nums.split('-')))
+plus = []
+
+for idx, m in enumerate(minus):
+    if m.count('+')>0:
+        plus = list(map(str, m.split('+')))
+        total = 0
+        for p in plus:
+            total += int(p)
+        minus[idx] = total  # 덧셈 결과로 업데이트
+    else:
+        minus[idx] = int(m) # int형으로 변환
+
+result = minus[0]
+for i in range(1, len(minus)):
+    result -= minus[i]
+    
+print(result)
