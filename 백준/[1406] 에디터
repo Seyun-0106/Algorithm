@@ -1,0 +1,30 @@
+import sys
+input = sys.stdin.readline
+from collections import deque
+
+left = list(input().rstrip())
+right = deque()
+
+n = int(input())
+
+for _ in range(n):
+    command = list(input().split())
+    
+    if command[0] == 'L':
+        # 커서 왼쪽으로 한 칸 옮기기
+        if left:
+            right.appendleft(left.pop())
+    elif command[0] == 'D':
+        # 커서를 오른쪽으로 한 칸 옮기기
+        if right:
+            left.append(right.popleft())
+    elif command[0] == 'B':
+        # 커서 왼쪽 문자 삭제
+        if left:
+            left.pop()
+    else:
+        # 커서 왼쪽에 문자 추가
+        left.append(command[1])
+    
+answer = left + list(right)
+print(''.join(answer))
