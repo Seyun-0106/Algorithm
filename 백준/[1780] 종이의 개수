@@ -1,0 +1,41 @@
+import sys
+input = sys.stdin.readline
+
+def divide(x, y, N):
+    global zero, one, mone
+    
+    kind = paper[x][y]
+    for i in range(x, x+N):
+        for j in range(y, y+N):
+            if kind != paper[i][j]:
+                divide(x, y, N//3)
+                divide(x, y+N//3, N//3)
+                divide(x, y+2*(N//3), N//3)
+                divide(x+N//3, y, N//3)
+                divide(x+N//3, y+N//3, N//3)
+                divide(x+N//3, y+2*(N//3), N//3)
+                divide(x+2*(N//3), y, N//3)
+                divide(x+2*(N//3), y+N//3, N//3)
+                divide(x+2*(N//3), y+2*(N//3), N//3)
+                return
+    
+    if kind == 0:
+        zero += 1
+    elif kind == 1:
+        one += 1
+    else:
+        mone += 1
+        
+    return
+
+n = int(input())
+paper = []
+for _ in range(n):
+    paper.append(list(map(int, input().split())))
+
+zero, one, mone = 0, 0, 0
+divide(0, 0, n)
+
+print(mone)
+print(zero)
+print(one)
