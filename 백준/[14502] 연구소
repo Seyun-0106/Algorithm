@@ -1,0 +1,58 @@
+import sys
+input = sys.stdin.readline
+import copy
+from collections import deque
+
+def wall(cnt):    
+    if cnt==3:
+        bfs()
+        return
+        
+    for i in range(n):
+        for j in range(m):
+            if graph[i][j]==0:
+                graph[i][j] = 1
+                wall(cnt+1)
+                graph[i][j] = 0
+                
+def bfs():
+    global answer
+    g = copy.deepcopy(graph)
+    
+    q = deque()
+    for i in range(n):
+        for j in range(m):
+            if g[i][j] == 2:
+                q.append((i,j))
+    
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    
+    while q:
+        x, y = q.popleft()
+        
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+        
+            if 0<=nx<n and 0<=ny<m:
+                if g[nx][ny]==0:
+                    g[nx][ny] = 2
+                    q.append((nx, ny))
+    
+    cnt = 0
+    for i in g:
+        cnt += i.count(0)
+        
+    answer = max(answer, cnt)
+
+    
+n, m = map(int, input().split())
+graph = []
+answer = 0
+
+for i in range(n):
+    graph.append(list(map(int, input().split())))
+    
+wall(0)
+print(answer)
