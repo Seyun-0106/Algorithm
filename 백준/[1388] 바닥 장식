@@ -1,0 +1,41 @@
+import sys
+input = sys.stdin.readline
+from collections import deque
+
+def bfs(x, y, t):
+    q = deque()
+    q.append((x,y))
+    floor[x][y] = '0'   # 방문처리
+    
+    while q:
+        x, y = q.popleft()
+        
+        if t=='-':  # 상하
+            dx = [0, 0]
+            dy = [-1, 1]
+        else:   # 좌우
+            dx = [-1, 1]
+            dy = [0, 0]
+            
+        for i in range(2):
+            nx = x + dx[i]
+            ny = y + dy[i]
+                
+            if 0<=nx<n and 0<=ny<m and floor[nx][ny]!='0':
+                if t == floor[nx][ny]:
+                    q.append((nx, ny))
+                    floor[nx][ny] = '0'
+
+n, m = map(int, input().split())
+floor = []
+
+for i in range(n):
+    floor.append(list(input().rstrip()))
+
+count = 0
+for i in range(n):
+    for j in range(m):
+        if floor[i][j]!='0':
+            bfs(i, j, floor[i][j])
+            count+=1
+print(count)
