@@ -1,0 +1,29 @@
+import sys
+input = sys.stdin.readline
+
+a, b = map(int, input().split())
+
+count = 0
+while b!=a:
+    if b<a: # a를 b로 만들 수 없음
+        count = 0
+        break
+
+    b_str = list(str(b))
+    if b_str[-1]=='1':  # 끝 자리가 1인 경우
+        s = ''
+        for i in range(len(b_str)-1):
+            s += b_str[i]
+        b = int(s)  # 1 삭제한 값으로 업데이트
+        count += 1
+    elif b%2==0:    # 2로 나누어 떨어지는 경우
+        b //= 2
+        count += 1
+    else:           # a를 b로 만들 수 없음
+        count = 0
+        break   #종료
+        
+if count>0:
+    print(count+1)
+else:
+    print(-1)
