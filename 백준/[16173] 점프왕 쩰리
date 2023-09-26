@@ -1,0 +1,23 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(x, y):
+    if x<0 or x>=n or y<0 or y>=n or maps[x][y]==0:
+        return
+    
+    if maps[x][y]==-1:	# 도달하면 프로그램 종료
+        print('HaruHaru')
+        sys.exit()
+        
+    cnt = maps[x][y]
+    maps[x][y] = 0
+    
+    dfs(x+cnt, y)
+    dfs(x, y+cnt)
+    
+            
+n = int(input())
+maps = [list(map(int, input().split())) for _ in range(n)]
+
+dfs(0,0)
+print('Hing')
