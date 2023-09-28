@@ -1,0 +1,40 @@
+import sys
+input = sys.stdin.readline
+import heapq
+
+def dijkstra(x, y):
+    q = []
+    heapq.heappush(q, (0, x, y))
+    visited[x][y] = True
+    
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    
+    while q:
+        cnt, x, y = heapq.heappop(q)
+        
+        if x==n-1 and y==n-1:
+            print(cnt)
+            sys.exit()
+            return
+        
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+            if 0<=nx<n and 0<=ny<n and not visited[nx][ny]:
+                if graph[nx][ny]==0:	# 검은방인 경우
+                    visited[nx][ny] = True
+                    heapq.heappush(q, (cnt+1, nx, ny))	# 색을 바꿔줘야 하므로 +1
+                else:
+                    visited[nx][ny] = True
+                    heapq.heappush(q, (cnt, nx, ny))
+
+    
+n = int(input())
+graph = []
+for i in range(n):
+    graph.append(list(map(int, input().rstrip())))
+
+visited = [[False]*n for _ in range(n)]
+dijkstra(0, 0)
