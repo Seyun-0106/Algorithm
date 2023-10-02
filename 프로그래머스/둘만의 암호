@@ -1,0 +1,17 @@
+def solution(s, skip, index):
+    answer = ''
+    for idx, s in enumerate(s):
+        num = ord(s)
+        cnt = 0
+        while True:
+            if cnt==index:	# 종료 조건
+                break
+        
+            num += 1
+            if num > ord('z'):  # 아스키코드 벗어나는 경우
+                num = ord('a')
+                
+            if chr(num) not in skip:
+                cnt+=1
+        answer += chr(num)
+    return answer
