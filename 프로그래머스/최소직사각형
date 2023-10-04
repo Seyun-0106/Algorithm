@@ -1,0 +1,9 @@
+def solution(sizes):
+    answer = 0
+    width, height = 0, 0
+    for idx,i in enumerate(sizes):
+        i.sort()
+        width = max(width, i[0])
+        height = max(height, i[1])
+
+    return width*height
