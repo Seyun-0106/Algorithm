@@ -1,0 +1,9 @@
+def solution(numbers):
+    answer = ''
+    numbers = list(map(str, numbers))
+    numbers = sorted(numbers, key=lambda x:x*3, reverse=True)
+
+    for i in numbers:
+        answer += str(i)
+    answer = int(answer)	# 0의 경우 00으로 제출될 수 있으니 정수형으로 변환!
+    return str(answer)
