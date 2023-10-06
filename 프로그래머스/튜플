@@ -1,0 +1,14 @@
+def solution(s):
+    answer = []
+    s_list = s[2:-2].split('},{')
+    lst = []
+    for idx, i in enumerate(s_list):
+        lst.append(list(map(int, i.split(','))))
+        
+    lst = sorted(lst, key=lambda x:len(x)) 
+    for i in lst:
+        for j in i:
+            if j not in answer:
+                answer.append(j)
+            
+    return answer
