@@ -1,0 +1,44 @@
+from collections import deque
+
+def bfs(x, y, maps, end):
+    q = deque()
+    q.append((x,y,0))
+    visited = [[False]*len(maps[0]) for _ in range(len(maps))]
+    visited[x][y] = True
+    
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+
+    while q:
+        x, y, dist = q.popleft()
+
+        if maps[x][y]==end:
+            return dist
+        
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+            if 0<=nx<len(maps) and 0<=ny<len(maps[0]):
+                if not visited[nx][ny] and maps[nx][ny]!='X':
+                    visited[nx][ny] = True
+                    q.append((nx, ny, dist+1))
+    return -1
+
+def solution(maps):
+    answer = 0
+
+    for x, i in enumerate(maps):
+        for y, j in enumerate(i):
+            if j=='S':
+                result = bfs(x, y, maps, 'L')
+                if result==-1:
+                    return -1
+                answer += result
+            if j=='L':
+                result = bfs(x, y, maps, 'E')
+                if result==-1:
+                    return -1                
+                answer += result
+    
+    return answer
