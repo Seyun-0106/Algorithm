@@ -1,0 +1,27 @@
+answer = 0
+
+def dfs(n, lst, dungeons, k):
+    global answer
+    
+    if n==len(dungeons):	# 종료 조건
+        count = 0
+        for i in lst:
+            a, b = dungeons[i]
+            if k>=a:	# 다음 던전 탐험 가능
+                count += 1	# 카운트 증가
+                k-=b
+            else:
+                break
+        answer = max(answer, count)	# 최댓값으로 업데이트
+        return
+    
+    for i in range(len(dungeons)):	# 백트래킹
+        if i not in lst:
+            lst.append(i)
+            dfs(n+1, lst, dungeons, k)
+            lst.pop()
+            
+def solution(k, dungeons):
+    global answer
+    dfs(0, [], dungeons, k)
+    return answer
