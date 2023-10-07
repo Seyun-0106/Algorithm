@@ -1,0 +1,47 @@
+import heapq
+
+def dijkstra(x, y, maps, end):
+    q = []
+    heapq.heappush(q, (0, x, y))
+    distance = [[int(1e9)]*len(maps[0]) for _ in range(len(maps))]
+    distance[x][y] = 0
+    
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+
+    while q:
+        dist, x, y = heapq.heappop(q)
+        if distance[x][y]<dist:
+            continue
+            
+        if maps[x][y]==end:
+            return dist
+        
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+            if 0<=nx<len(maps) and 0<=ny<len(maps[0]):
+                cost = dist + 1
+                if maps[nx][ny]!='X' and distance[nx][ny]>cost:
+                    distance[nx][ny] = cost
+                    heapq.heappush(q, (cost, nx, ny))
+    return -1
+
+def solution(maps):
+    answer = 0
+
+    for x, i in enumerate(maps):
+        for y, j in enumerate(i):
+            if j=='S':
+                result = dijkstra(x, y, maps, 'L')
+                if result==-1:
+                    return -1
+                answer += result
+            if j=='L':
+                result = dijkstra(x, y, maps, 'E')
+                if result==-1:
+                    return -1                
+                answer += result
+    
+    return answer
