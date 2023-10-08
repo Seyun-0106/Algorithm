@@ -1,0 +1,18 @@
+def solution(n, times):
+    answer = 0
+    start = 1   # 최소 심사 시간
+    end = max(times)*n  # 최대 심사 시간 (최악의 경우)
+    
+    while start<=end:
+        mid = (start+end)//2
+        total = 0   # 심사할 수 있는 인원 수
+        
+        for t in times:
+            total += mid//t
+        
+        if total>=n:
+            answer = mid
+            end = mid-1
+        else:
+            start = mid+1
+    return answer
