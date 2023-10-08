@@ -1,0 +1,10 @@
+def solution(numbers):
+    answer = [-1] * len(numbers)
+    stack = []
+    # stack에 index를 저장해서 뒷 큰수를 발견하면 pop 해줌
+    for idx, n in enumerate(numbers):
+        while stack and numbers[stack[-1]] < n:
+            answer[stack.pop()] = n
+        stack.append(idx)
+    
+    return answer
