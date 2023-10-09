@@ -1,0 +1,16 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+lst = list(map(int, input().split()))
+lst.sort()
+
+answer = 0  # 그룹 수
+cnt = 0 # 그룹 인원
+for i in lst:
+    cnt += 1    # 해당 모험가를 그룹에 추가시키기
+    if cnt >= i:    # 그룹 인원이 공포도보다 크거나 같은 경우
+        answer += 1 # 그룹 결성
+        cnt = 0 # 그룹 인원 초기화
+
+print(answer)
