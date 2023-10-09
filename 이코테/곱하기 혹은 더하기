@@ -1,0 +1,13 @@
+import sys
+input = sys.stdin.readline
+
+s = list(map(int, input().rstrip()))
+s.sort(reverse=True)
+
+answer = 1
+for i in s:
+    if i==0 or i==1:
+        answer += i
+    else:
+        answer *= i
+print(answer)
