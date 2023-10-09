@@ -1,0 +1,22 @@
+import sys
+input = sys.stdin.readline
+
+s = list(map(int, input().rstrip()))
+answer = 0
+
+zero, one = 0, 0
+
+for i in range(len(s)-1):
+    if s[i]!=s[i+1]:
+        if s[i]==0:
+            zero+=1
+        else:
+            one+=1
+
+# 마지막 숫자 카운트 
+if s[-1]==0:
+    zero+=1
+else:
+    one+=1
+        
+print(min(zero, one))
