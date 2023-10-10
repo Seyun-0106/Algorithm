@@ -1,0 +1,13 @@
+import sys
+input = sys.stdin.readline
+
+nums = list(map(int, input().rstrip()))
+half = len(nums)//2
+
+left = sum(nums[:half])
+right = sum(nums[half:])
+
+if left==right:
+    print('LUCKEY')
+else:
+    print('READY')
