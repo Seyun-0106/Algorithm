@@ -1,0 +1,26 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, lst):
+    if n==N:
+        result.append(sum(lst))
+        return
+    # 포함
+    dfs(n+1, lst+[coins[n]])
+    # 불포함
+    dfs(n+1, lst)
+    
+N = int(input())
+coins = list(map(int, input().split()))
+coins.sort()
+
+result = []
+dfs(0, [])	# 백트래킹
+
+num = 0
+while True:
+    if num not in result:	# 만들 수 없는 금액인 경우
+        print(num)
+        break
+    else:
+        num+=1
