@@ -1,0 +1,17 @@
+import sys
+input = sys.stdin.readline
+
+s = list(input().rstrip())
+answer = []
+
+total = 0   # 숫자 총 합
+for i in s:
+    if i.isalpha():
+        answer.append(i)
+    else:
+        total += int(i)
+        
+answer.sort()   # 알파벳 오름차순 정렬
+for i in answer:
+    print(i, end='')
+print(total, end='')
