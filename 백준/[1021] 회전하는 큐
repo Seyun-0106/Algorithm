@@ -1,0 +1,29 @@
+import sys
+input = sys.stdin.readline
+from collections import deque
+
+n, m = map(int, input().split())
+pick = list(map(int, input().split()))
+
+nums = [i for i in range(1, n+1)]
+nums = deque(nums)
+cnt = 0
+
+while len(pick)>0:
+    if nums[0]==pick[0]:
+        nums.popleft()
+        pick.pop(0)
+        continue
+
+    idx = nums.index(pick[0])   # 뽑을 숫자의 index
+    
+    if idx<=len(nums)//2:
+        nums.append(nums.popleft()) # 2번 수행
+        cnt+=1
+        #print(nums)
+    else:
+        nums.appendleft(nums.pop()) # 3번 수행
+        cnt+=1
+        #print(nums)
+        
+print(cnt)
