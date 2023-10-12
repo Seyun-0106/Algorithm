@@ -1,0 +1,19 @@
+import sys
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+square = [list(map(int, input().rstrip())) for _ in range(n)]
+
+size = n
+while True:
+    for x in range(n):
+        for y in range(m):
+            nx = x+size-1
+            ny = y+size-1
+            
+            if 0<=nx<n and 0<=ny<m:
+                if square[x][y] == square[x][ny] ==square[nx][y] == square[nx][ny]:
+                    print(size**2)
+                    sys.exit()
+                    
+    size-=1
