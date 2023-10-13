@@ -1,0 +1,31 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, lst):
+    if n==N:
+        if len(lst)==N:
+            check = True    # 카운트 체크
+            for i in range(N):
+                cnt = 0
+                for j in lst[:i]:   # 왼쪽에 있는 키 비교
+                    if j>lst[i]:    # 본인보다 큰 경우 cnt 증가
+                        cnt+=1
+
+                if cnt!=height[lst[i]-1]:   # 정보가 일치하지 않는 경우
+                    check = False
+                    
+            if check:   # 정보가 모두 일치하는 경우
+                print(' '.join(map(str, lst)))
+            return
+    
+    for i in range(1, N+1):
+        if i not in lst:
+            lst.append(i)
+            dfs(n+1, lst)
+            lst.pop()
+            
+N = int(input())
+height = list(map(int, input().split()))
+
+
+dfs(0, [])   # 백트래킹
