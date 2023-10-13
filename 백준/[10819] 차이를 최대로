@@ -1,0 +1,30 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, lst, index):
+    global answer
+    
+    if n==N:
+        if len(lst)==N:
+            total = 0
+            for i in range(N-1):
+                total += abs(lst[i]-lst[i+1])
+            answer = max(answer, total)
+        return
+    
+    for i in range(N):
+        if not index[i]:	# 해당 인덱스를 사용하지 않은 경우
+            lst.append(nums[i])
+            index[i] = True
+            dfs(n+1, lst, index)
+            lst.pop()
+            index[i] = False
+            
+            
+N = int(input())
+nums = list(map(int, input().split()))
+answer = 0
+index = [False]*N	# 인덱스 체크 여부
+dfs(0, [], index)	# 백트래킹
+
+print(answer)
