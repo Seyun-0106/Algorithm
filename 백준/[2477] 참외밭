@@ -1,0 +1,36 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+info = [[] for _ in range(5)]	# 방향에 따른 길이 정보
+d = []	# 방향 입력 순서
+
+for i in range(6):
+    direction, length = map(int, input().split())
+    d.append(direction)
+    info[direction].append(length)
+    
+# 큰 직사각형 넓이 구하기
+square1 = 1	
+for i in info:
+    if len(i)==1:
+        square1 *= i[0]
+
+# 작은 직사각형 넓이 구하기
+d = d*2	# 방향 2번 반복
+square2 = 1
+for i in range(len(d)*2-5):
+    if d[i:i+2] == d[i+2:i+4]:
+        if d[:i+1].count(d[i])==1:
+            square2 *= info[d[i]][1]
+        else:
+            square2 *= info[d[i]][0]
+        
+        if d[:i+1].count(d[i+1])==1:    
+            square2 *= info[d[i+1]][1]
+        else:
+            square2 *= info[d[i+1]][0]
+        break
+
+# 참외밭 넓이 * 참외 개수
+print((square1-square2)*n)
