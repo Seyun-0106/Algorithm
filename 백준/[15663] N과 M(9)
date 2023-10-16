@@ -1,0 +1,30 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, lst, index):
+    if len(lst)==M:
+        answer.add(tuple(lst[:]))   # 리스트 복사(or lst.copy())
+        return
+
+    for i in range(N):
+        if not index[i]:	# index에 해당하는 숫자 사용 여부
+            lst.append(nums[i])
+            index[i] = True
+            dfs(n+1, lst, index)
+            lst.pop()
+            index[i] = False
+
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
+answer = set()
+index = [False]*N
+
+dfs(0, [], index)
+
+answer = list(answer)
+answer.sort()
+
+for i in answer:
+    for j in i:
+        print(j, end=' ')
+    print()
