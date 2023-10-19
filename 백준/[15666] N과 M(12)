@@ -1,0 +1,24 @@
+import sys
+input = sys.stdin.readline
+
+def dfs(n, start):
+    if n == M:
+        print(' '.join(map(str, answer)))
+        return
+
+    check = [False] * N
+    temp = 0
+    for i in range(start, N):
+        if not check[i] and temp != nums[i]:
+            check[i] = True
+            answer.append(nums[i])
+            temp = nums[i]
+            dfs(n+1, i)
+            check[i] = False
+            answer.pop()
+
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
+nums.sort()
+answer = []
+dfs(0, 0)
