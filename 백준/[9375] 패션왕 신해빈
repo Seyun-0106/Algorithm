@@ -1,0 +1,21 @@
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    clothes = {}
+    
+    for _ in range(n):
+        name, kind = map(str, input().split())
+        if kind not in clothes:
+            clothes[kind] = 1
+        else:
+            clothes[kind]+=1
+            
+    answer = 1
+    for i in clothes.values():
+        answer *= (i+1)
+    
+    print(answer-1) # 아무것도 안 입은 경우 제외
