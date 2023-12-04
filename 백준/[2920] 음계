@@ -1,0 +1,25 @@
+import sys
+input = sys.stdin.readline
+
+# 1~8까지 차례대로 연주하면 ascending
+# 8~1까지 차례대로 연주한면 descending
+# 둘 다 아니면 mixed
+
+nums = list(map(int, input().split()))
+temp = nums[0]
+
+for i in nums[1:]:
+    answer = temp-i
+    if abs(temp-i)==1:
+        temp = i
+        continue
+    else:
+        answer = 0
+        break
+
+if answer>0:
+    print('descending')
+elif answer<0:
+    print('ascending')
+else:
+    print('mixed')
